@@ -15,15 +15,13 @@ import {
 } from "react-icons/io5";
 
 import { useUIStore } from "@/store/ui/ui-store";
-import { logout } from "@/actions";
+import { logout } from "@/actions/auth/logout";
 
 export const Sidebar = () => {
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
   const closeMenu = useUIStore((state) => state.closeSideMenu);
 
-  const { data: session } = useSession();
-  const isAuthenticated = !!session?.user;
-  const isAdmin = session?.user.role === "admin";
+
 
   return (
     <div>
@@ -67,7 +65,7 @@ export const Sidebar = () => {
 
         {/* Menú */}
 
-        {isAuthenticated && (
+
           <>
             <Link
               href="/profile"
@@ -87,9 +85,9 @@ export const Sidebar = () => {
               <span className="ml-3 text-xl">Ordenes</span>
             </Link>
           </>
-        )}
+   
 
-        {isAuthenticated && (
+
           <button
             className="flex w-full items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
             onClick={() => logout()}
@@ -97,9 +95,9 @@ export const Sidebar = () => {
             <IoLogOutOutline size={30} />
             <span className="ml-3 text-xl">Salir</span>
           </button>
-        )}
 
-        {!isAuthenticated && (
+
+
           <Link
             href="/auth/login"
             className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
@@ -108,9 +106,8 @@ export const Sidebar = () => {
             <IoLogInOutline size={30} />
             <span className="ml-3 text-xl">Ingresar</span>
           </Link>
-        )}
 
-        {isAdmin && (
+
           <>
             {/* Line Separator */}
             <div className="w-full h-px bg-gray-200 my-10" />
@@ -142,7 +139,7 @@ export const Sidebar = () => {
               <span className="ml-3 text-xl">Usuarios</span>
             </Link>
           </>
-        )}
+
       </nav>
     </div>
   );
