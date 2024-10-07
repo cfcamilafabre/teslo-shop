@@ -12,16 +12,26 @@ interface Props {
 export const ProductGridItem = ({ product }: Props) => {
 
     const [displayImage, setDisplayImage] = useState( product.images[0] );
-    
+
+    const handleOnMouseEnter = () => {
+        setDisplayImage(product.images[1])
+    }
+
+    const handleOnMouseLeave = () => {
+        setDisplayImage(product.images[0])
+    }
+
   return (
     <div className="rounded-md overflow-hidden fade-in">
       <Link href={`/product/${product.slug}`}>
         <Image
-          src={`/products/${product.images[0]}`}
+          src={`/products/${displayImage}`}
           alt={product.title}
-          className="w-full object-cover"
+          className="w-full object-cover rounded"
           width={500}
           height={500}
+          onMouseEnter={handleOnMouseEnter}
+          onMouseLeave={handleOnMouseLeave}
         />
       </Link>
 
