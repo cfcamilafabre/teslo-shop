@@ -1,4 +1,7 @@
-import { SizeSelector } from "@/components/size-selector/SizeSelector";
+import { QuantitySelector } from "@/components/product/quantity-selector/QuantitySelector";
+import { SizeSelector } from "@/components/product/size-selector/SizeSelector";
+import { ProductMobileSlideshow } from "@/components/product/slideshow/ProductMobileSlideshow";
+import { ProductSlideshow } from "@/components/product/slideshow/ProductSlideshow";
 import { titleFont } from "@/config/fonts";
 import { initialData } from "@/seed/seed";
 import { notFound } from "next/navigation";
@@ -29,7 +32,7 @@ interface Props {
         <div className="col-span-1 md:col-span-2 ">
           
           {/* Mobile Slideshow */}
-          <ProductMobileSlideshow 
+          <ProductMobileSlideshow    
             title={ product.title }
             images={ product.images }
             className="block md:hidden"
